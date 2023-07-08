@@ -23,10 +23,15 @@ func getAlbums(c *gin.Context) {
 
 }
 
+func getById(c *gin.Context) {
+	id := c.Param("id")
+	c.JSON(200, gin.H{"id": id})
+}
+
 func main() {
 	router := gin.Default()
 	router.GET("/albums", getAlbums)
-
+	router.GET("/albums/:id", getById)
 	err := router.Run("localhost:8080")
 
 	if err != nil {
